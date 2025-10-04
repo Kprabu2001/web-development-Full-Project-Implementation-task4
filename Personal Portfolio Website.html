@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header { background: #0f8b85; color: #fff; padding: 1rem; text-align: center; }
+    nav { background: #e6f3f2; padding: 0.5rem; text-align: center; }
+    nav a { margin: 0 10px; text-decoration: none; color: #0f8b85; font-weight: bold; }
+    section { padding: 2rem; }
+    .projects { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .project { border: 1px solid #ccc; padding: 1rem; border-radius: 8px; flex: 1; min-width: 200px; }
+    footer { background: #0f8b85; color: white; text-align: center; padding: 1rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Prabu K — Portfolio</h1>
+  </header>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a Frontend Developer learning HTML, CSS, and JavaScript, building modern and responsive websites.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project"><h3>Portfolio Website</h3><p>Responsive portfolio with multiple sections.</p></div>
+      <div class="project"><h3>To-Do App</h3><p>Save tasks in localStorage with add/edit/delete options.</p></div>
+      <div class="project"><h3>Product Listing</h3><p>Filter & sort products interactively.</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <form>
+      <label>Name:</label><br><input type="text"><br><br>
+      <label>Email:</label><br><input type="email"><br><br>
+      <label>Message:</label><br><textarea></textarea><br><br>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Prabu K — All Rights Reserved</p>
+  </footer>
+</body>
+</html>

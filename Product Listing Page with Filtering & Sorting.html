@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Listing</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 20px; background: #f4f7f6; }
+    h1 { color: #0f8b85; }
+    .controls { margin-bottom: 15px; }
+    select, input { padding: 8px; margin-right: 10px; }
+    .grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .product { background: #fff; border: 1px solid #ccc; padding: 15px; border-radius: 8px; width: 200px; }
+  </style>
+</head>
+<body>
+  <h1>Product Listing</h1>
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search products...">
+    <select id="filterCategory"></select>
+    <select id="sort">
+      <option value="default">Sort by</option>
+      <option value="price-asc">Price ↑</option>
+      <option value="price-desc">Price ↓</option>
+      <option value="rating-asc">Rating ↑</option>
+      <option value="rating-desc">Rating ↓</option>
+    </select>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+
+  <script>
+    const products = [
+      {name:"Wooden Chair", category:"Furniture", price:50, rating:4.3},
+      {name:"Ceramic Mug", category:"Kitchen", price:15, rating:4.7},
+      {name:"Running Shoes", category:"Apparel", price:70, rating:4.5},
+      {name:"Bluetooth Speaker", category:"Electronics", price:40, rating:4.2},
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const search = document.getElementById("search");
+    const filterCategory = document.getElementById("filterCategory");
+    const sort = document.getElementById("sort");
+
+    function renderProducts() {
+      let filtered = [...products];
+
+      if (search.value) {
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(search.value.toLowerCase()));
+      }
+
+      if (filterCategory.value && filterCategory.value !== "all") {
+        filtered = filtered.filter(p => p.category === filterCategory.value);
+      }
+
+      if (sort.value === "price-asc") filtered.sort((a,b)=>a.price-b.price);
+      if (sort.value === "price-desc") filtered.sort((a,b)=>b.price-a.price);
+      if (sort.value === "rating-asc") filtered.sort((a,b)=>a.rating-b.rating);
+      if (sort.value === "rating-desc") filtered.sort((a,b)=>b.rating-a.rating);
+
+      productGrid.innerHTML = "";
+      filtered.forEach(p => {
+        productGrid.innerHTML += `<div class='product'><h3>${p.name}</h3><p>Category: ${p.category}</p><p>Price: $${p.price}</p><p>Rating: ★${p.rating}</p></div>`;
+      });
+    }
+
+    // Populate categories
+    const categories = ["all", ...new Set(products.map(p => p.category))];
+    categories.forEach(c => {
+      filterCategory.innerHTML += `<option value='${c}'>${c}</option>`;
+    });
+
+    search.addEventListener("input", renderProducts);
+    filterCategory.addEventListener("change", renderProducts);
+    sort.addEventListener("change", renderProducts);
+
+    renderProducts();
+  </script>
+</body>
+</html>
